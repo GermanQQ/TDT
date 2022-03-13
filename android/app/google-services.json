@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "417107557234",
+    "project_id": "tdt-flutter",
+    "storage_bucket": "tdt-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417107557234:android:27d2aefc5a071c88acfbeb",
+        "android_client_info": {
+          "package_name": "com.germanqq.flutter_tdt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "417107557234-3e9r153soudsqq3ftlaa3kn0h8brbdgj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEgfAmtl42O55f3BOW_Tf4KFsNi-pBv2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "417107557234-3e9r153soudsqq3ftlaa3kn0h8brbdgj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "417107557234-l4hfiusi01ct0idplvbg0jmt3m0bsdko.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.germanqq.flutterTdt"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
