@@ -26,7 +26,7 @@ class LanguageProvider extends BaseProvider {
     
     return EasyLocalization(
         supportedLocales: supportedLocales,
-        path: 'assets/locale/',
+        path: 'assets/locale',
         useOnlyLangCode: true,
         startLocale: lang ?? supportedLocales[0],
         fallbackLocale: lang ?? supportedLocales[0],
