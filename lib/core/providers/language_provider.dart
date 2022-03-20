@@ -5,9 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageProvider extends BaseProvider {
   static List<Locale> supportedLocales = [
-    const Locale.fromSubtags(languageCode: "en"),
-    const Locale.fromSubtags(languageCode: "ru"),
-    const Locale.fromSubtags(languageCode: "es"),
+    const Locale.fromSubtags(languageCode: 'en'),
+    const Locale.fromSubtags(languageCode: 'ru'),
+    const Locale.fromSubtags(languageCode: 'es'),
   ];
 
   static Locale? lang;

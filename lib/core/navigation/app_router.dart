@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/constants/routes.dart';
 import 'package:flutter_tdt/core/enums/enums.dart';
+import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:flutter_tdt/core/providers/auth_provider.dart';
 import 'package:flutter_tdt/locator.dart';
 
@@ -15,35 +15,36 @@ class AppRouter extends RouterDelegate
   AppRouter() : navigatorKey = GlobalKey<NavigatorState>() {
     locator<AuthProvider>().addListener(notifyListeners);
     locator<LanguageProvider>().addListener(notifyListeners);
+    locator<Routes>().addListener(notifyListeners);
   }
 
   @override
   void dispose() {
     locator<AuthProvider>().removeListener(notifyListeners);
     locator<LanguageProvider>().removeListener(notifyListeners);
+    locator<Routes>().removeListener(notifyListeners);
     super.dispose();
   }
-  final _auth = locator<AuthProvider>();
-
+  final _route = locator<Routes>();
 
   @override
   Widget build(BuildContext context) {
-    final isAutheticaded = _auth.statusAuth == AuthStatus.Authenticated;
+    final isAutheticaded = _route.status == AuthStatus.Authenticated;
 
     List<Page> pages = [
-      if (_auth.statusAuth == AuthStatus.Unauthenticated &&
+      if (_route.status == AuthStatus.Unauthenticated &&
           LanguageProvider.lang == null)
         LanguageInitialPage.page(),
-      if (_auth.statusAuth == AuthStatus.Authenticating ||
-          _auth.statusAuth == AuthStatus.Registering ||
-          _auth.statusAuth == AuthStatus.Uninitialized)
+      if (_route.status == AuthStatus.Authenticating ||
+          _route.status == AuthStatus.Registering ||
+          _route.status == AuthStatus.Uninitialized)
         InitialPage.page(),
-      if (_auth.statusAuth == AuthStatus.Unauthenticated &&
+      if (_route.status == AuthStatus.Unauthenticated &&
           LanguageProvider.lang != null)
         SliderPage.page(),
-      if (!isAutheticaded && _auth.navLogin ) LoginPage.page(),
-      if (!isAutheticaded && _auth.navRegister) RegisteringPage.page(),
-      if (isAutheticaded) CoursesPage.page(),
+      if (!isAutheticaded && _route.navLogin ) LoginPage.page(),
+      if (!isAutheticaded && _route.navRegister) RegisteringPage.page(),
+      if (isAutheticaded) HomeScreen.page(),
     ];
 
     return Navigator(
@@ -58,8 +59,8 @@ class AppRouter extends RouterDelegate
 
     final page = route.settings as MaterialPage;
 
-    if (page.name == Routes.login) _auth.tapOnLogin(false);
-    if (page.name == Routes.reqister) _auth.tapOnRegister(false);
+    if (page.name == Routes.login) _route.tapOnLogin(false);
+    if (page.name == Routes.reqister) _route.tapOnRegister(false);
 
     return true;
   }

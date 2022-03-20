@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/enums/enums.dart';
+import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:flutter_tdt/core/providers/register_provider.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/constants/routes.dart';
 
 class RegisteringPage extends StatelessWidget {
   static MaterialPage page() {

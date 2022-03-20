@@ -7,3 +7,4 @@ export 'login_form.dart';
 export 'loading.dart';
 export 'message_container.dart';
 export 'message_text_field.dart';
+export 'custom_bottom_bar.dart';

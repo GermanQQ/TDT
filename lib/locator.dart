@@ -3,10 +3,10 @@ import 'package:flutter_tdt/core/providers/register_provider.dart';
 import 'package:flutter_tdt/core/services/auth_api.dart';
 import 'package:get_it/get_it.dart';
 
-import 'core/constants/routes.dart';
 import 'core/navigation/app_router.dart';
 import 'core/providers/language_provider.dart';
 import 'core/providers/auth_provider.dart';
+import 'core/navigation/router.dart';
 import 'core/services/api.dart';
 
 GetIt locator = GetIt.instance;

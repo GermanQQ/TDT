@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
-
-import '../../core/constants/constans.dart';
 
 class InitialPage extends StatelessWidget {
   static MaterialPage page() {

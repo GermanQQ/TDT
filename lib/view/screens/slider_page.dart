@@ -1,12 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/constants/constans.dart';
 import 'package:flutter_tdt/core/enums/enums.dart';
+import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:flutter_tdt/core/providers/slider_provider.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/providers/auth_provider.dart';
 import '../../locator.dart';
 
 class SliderPage extends StatelessWidget {
@@ -44,11 +43,11 @@ class SliderPage extends StatelessWidget {
                   children: [
                     CustomSlider(controller: _buttonCarouselController),
                     SizedBox(height: 20),
-                    CustomButton(title: 'Register', onPressed: () => locator<AuthProvider>().tapOnRegister(true)),
+                    CustomButton(title: 'Register', onPressed: () => locator<Routes>().tapOnRegister(true)),
                     SizedBox(height: 20),
                     CustomButton(
                         title: 'Log in',
-                        onPressed: () => locator<AuthProvider>().tapOnLogin(true),
+                        onPressed: () => locator<Routes>().tapOnLogin(true),
                         type: ButtonType.white),
                   ],
                 ),

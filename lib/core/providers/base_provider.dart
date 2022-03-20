@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
-class BaseProvider with ChangeNotifier {
-  refresh() => notifyListeners();
+class BaseProvider extends ChangeNotifier {
+  refresh() {
+    print('__REFRESH STATE__ ${this.runtimeType}');
+    notifyListeners();}
 }

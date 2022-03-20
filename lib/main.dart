@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tdt/core/navigation/app_router.dart';
+import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:flutter_tdt/core/providers/language_provider.dart';
 import 'package:flutter_tdt/core/providers/auth_provider.dart';
 import 'package:flutter_tdt/locator.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
     ]);
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<Routes>(create: (_) => locator<Routes>()),
         ChangeNotifierProvider<AuthProvider>(create: (_) => locator<AuthProvider>()),
         ChangeNotifierProvider<LanguageProvider>(create: (_) => locator<LanguageProvider>()),
       ],
