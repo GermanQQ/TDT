@@ -3,7 +3,7 @@ import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:flutter_tdt/view/screens/sreens.dart';
 import 'package:provider/provider.dart';
 
-import 'default_page.dart';
+import 'default_Page.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);

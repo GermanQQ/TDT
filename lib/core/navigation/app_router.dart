@@ -38,7 +38,7 @@ class AppRouter extends RouterDelegate
       if (_route.status == AuthStatus.Authenticating ||
           _route.status == AuthStatus.Registering ||
           _route.status == AuthStatus.Uninitialized)
-        InitialPage.page(),
+        SplashPage.page(),
       if (_route.status == AuthStatus.Unauthenticated &&
           LanguageProvider.lang != null)
         SliderPage.page(),

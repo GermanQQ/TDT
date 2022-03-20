@@ -6,7 +6,7 @@ import 'package:flutter_tdt/locator.dart';
 class Routes extends BaseProvider {
   static String initialLang = '/initial_lang';
   static String login = '/login';
-  static String initialLoading = '/initial_loading';
+  static String splash = '/splash';
   static String sliderPage = '/slider';
   static String reqister = '/reqister';
   static String home = '/';
