@@ -1,6 +1,6 @@
 import 'package:flutter_tdt/core/enums/enums.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
-import 'package:flutter_tdt/core/services/auth_api.dart';
+import 'package:flutter_tdt/core/network/auth_api.dart';
 
 import '../../locator.dart';
 import '../models/models.dart';
