@@ -1,13 +1,13 @@
 import 'package:flutter_tdt/core/enums/enums.dart';
-import 'package:flutter_tdt/core/providers/base_provider.dart';
+import 'package:flutter_tdt/core/view_models/base_model.dart';
 
 import '../../locator.dart';
-import 'auth_provider.dart';
+import 'auth_model.dart';
 
-class LoginProvider extends BaseProvider {
+class LoginModel extends BaseModel {
   ViewState _status = ViewState.Idle;
   ViewState get status => _status;
-  AuthProvider _authProvider = locator<AuthProvider>();
+  AuthModel _authProvider = locator<AuthModel>();
 
   Future<AuthStatus> login(String email, String password) async {
     changeStatus(ViewState.Busy);

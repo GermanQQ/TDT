@@ -1,9 +1,9 @@
 import 'package:flutter_tdt/core/enums/enums.dart';
-import 'package:flutter_tdt/core/providers/auth_provider.dart';
-import 'package:flutter_tdt/core/providers/base_provider.dart';
+import 'package:flutter_tdt/core/view_models/auth_model.dart';
+import 'package:flutter_tdt/core/view_models/base_model.dart';
 import 'package:flutter_tdt/locator.dart';
 
-class Routes extends BaseProvider {
+class Routes extends BaseModel {
   static String initialLang = '/initial_lang';
   static String login = '/login';
   static String splash = '/splash';
@@ -19,7 +19,7 @@ class Routes extends BaseProvider {
   bool _navigateLogin = false;
   bool _navigateRegister = false;
 
-  AuthStatus get status => locator<AuthProvider>().statusAuth;
+  AuthStatus get status => locator<AuthModel>().statusAuth;
 
   bool get navLogin => _navigateLogin;
   bool get navRegister => _navigateRegister;

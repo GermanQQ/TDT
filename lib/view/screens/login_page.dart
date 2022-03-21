@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/enums/enums.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
-import 'package:flutter_tdt/core/providers/login_provider.dart';
+import 'package:flutter_tdt/core/view_models/login_model.dart';
 import 'package:flutter_tdt/view/widgets/snackbar.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -22,12 +22,12 @@ class LoginPage extends StatelessWidget {
   final _passwordControler = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<LoginProvider>(
-      create: (context) => LoginProvider(),
+    return ChangeNotifierProvider<LoginModel>(
+      create: (context) => LoginModel(),
       child: Scaffold(
         body: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Consumer<LoginProvider>(builder: (context, model, child) {
+          child: Consumer<LoginModel>(builder: (context, model, child) {
             return model.status == ViewState.Idle
                 ? Center(
                     child: SingleChildScrollView(

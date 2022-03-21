@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/enums/enums.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
-import 'package:flutter_tdt/core/providers/auth_provider.dart';
+import 'package:flutter_tdt/core/view_models/auth_model.dart';
+import 'package:flutter_tdt/core/view_models/language_model.dart';
 import 'package:flutter_tdt/locator.dart';
 
 import '../../view/screens/sreens.dart';
-import '../providers/language_provider.dart';
 
 class AppRouter extends RouterDelegate
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
@@ -13,15 +13,15 @@ class AppRouter extends RouterDelegate
   final GlobalKey<NavigatorState> navigatorKey;
 
   AppRouter() : navigatorKey = GlobalKey<NavigatorState>() {
-    locator<AuthProvider>().addListener(notifyListeners);
-    locator<LanguageProvider>().addListener(notifyListeners);
+    locator<AuthModel>().addListener(notifyListeners);
+    locator<LanguageModel>().addListener(notifyListeners);
     locator<Routes>().addListener(notifyListeners);
   }
 
   @override
   void dispose() {
-    locator<AuthProvider>().removeListener(notifyListeners);
-    locator<LanguageProvider>().removeListener(notifyListeners);
+    locator<AuthModel>().removeListener(notifyListeners);
+    locator<LanguageModel>().removeListener(notifyListeners);
     locator<Routes>().removeListener(notifyListeners);
     super.dispose();
   }
@@ -33,14 +33,14 @@ class AppRouter extends RouterDelegate
 
     List<Page> pages = [
       if (_route.status == AuthStatus.Unauthenticated &&
-          LanguageProvider.lang == null)
+          LanguageModel.lang == null)
         LanguageInitialPage.page(),
       if (_route.status == AuthStatus.Authenticating ||
           _route.status == AuthStatus.Registering ||
           _route.status == AuthStatus.Uninitialized)
         SplashPage.page(),
       if (_route.status == AuthStatus.Unauthenticated &&
-          LanguageProvider.lang != null)
+          LanguageModel.lang != null)
         SliderPage.page(),
       if (!isAutheticaded && _route.navLogin ) LoginPage.page(),
       if (!isAutheticaded && _route.navRegister) RegisteringPage.page(),

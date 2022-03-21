@@ -4,9 +4,9 @@ import 'package:flutter_tdt/core/network/auth_api.dart';
 
 import '../../locator.dart';
 import '../models/models.dart';
-import 'base_provider.dart';
+import 'base_model.dart';
 
-class AuthProvider extends BaseProvider {
+class AuthModel extends BaseModel {
   AuthAPI _authAPI = locator<AuthAPI>();
   AuthStatus _status = AuthStatus.Uninitialized;
   UserModel? _user;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_tdt/core/constants/constans.dart';
-import 'package:flutter_tdt/core/providers/language_provider.dart';
+import 'package:flutter_tdt/core/view_models/language_model.dart';
 
 import '../../core/utils/utils.dart';
 
@@ -14,7 +14,7 @@ class DropDownLang extends StatelessWidget {
           dropdownColor: bgColor,
           icon: RotatedBox(quarterTurns: 3, child: Icon(Icons.arrow_back_ios_new, color: Colors.black)),
           onChanged: (value) {},
-          items: LanguageProvider.supportedLocales
+          items: LanguageModel.supportedLocales
               .map((e) => DropdownMenuItem(
                   value: e,
                   child: Padding(

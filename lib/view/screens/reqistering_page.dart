@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/enums/enums.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
-import 'package:flutter_tdt/core/providers/register_provider.dart';
+import 'package:flutter_tdt/core/view_models/register_model.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -18,8 +18,8 @@ class RegisteringPage extends StatelessWidget {
   final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<RegisterProvider>(
-      create: (context) => RegisterProvider(),
+    return ChangeNotifierProvider<RegisterModel>(
+      create: (context) => RegisterModel(),
       child: Scaffold(
         appBar: AppBar(
           title: Text(
@@ -31,7 +31,7 @@ class RegisteringPage extends StatelessWidget {
         ),
         body: Stack(
           children: [
-            Consumer<RegisterProvider>(
+            Consumer<RegisterModel>(
               builder: (context, model, child) {
                 switch (model.authStatus) {
                   case AuthStatus.Unauthenticated:

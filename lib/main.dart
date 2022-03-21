@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_tdt/core/navigation/app_router.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
-import 'package:flutter_tdt/core/providers/language_provider.dart';
-import 'package:flutter_tdt/core/providers/auth_provider.dart';
+import 'package:flutter_tdt/core/view_models/auth_model.dart';
+import 'package:flutter_tdt/core/view_models/language_model.dart';
 import 'package:flutter_tdt/locator.dart';
 import 'package:provider/provider.dart';
 import 'core/constants/constans.dart';
@@ -16,12 +16,12 @@ void main() async {
   await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
   setupLocator();
-  runApp(await LanguageProvider.localize(MyApp()));
+  runApp(await LanguageModel.localize(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
   MyApp() {
-    locator<AuthProvider>().appStarted();
+    locator<AuthModel>().appStarted();
   }
 
   @override
@@ -33,8 +33,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<Routes>(create: (_) => locator<Routes>()),
-        ChangeNotifierProvider<AuthProvider>(create: (_) => locator<AuthProvider>()),
-        ChangeNotifierProvider<LanguageProvider>(create: (_) => locator<LanguageProvider>()),
+        ChangeNotifierProvider<AuthModel>(create: (_) => locator<AuthModel>()),
+        ChangeNotifierProvider<LanguageModel>(create: (_) => locator<LanguageModel>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

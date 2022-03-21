@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/providers/auth_provider.dart';
+import 'package:flutter_tdt/core/view_models/auth_model.dart';
 import 'package:flutter_tdt/locator.dart';
 
 
@@ -12,7 +12,7 @@ class ProfilePage extends StatelessWidget {
       child: Center(
           child: IconButton(
         onPressed: () {
-          locator<AuthProvider>().signOut();
+          locator<AuthModel>().signOut();
         },
         icon: Icon(Icons.logout),
       )),

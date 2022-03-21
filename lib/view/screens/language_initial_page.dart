@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
-import 'package:flutter_tdt/core/providers/language_provider.dart';
+import 'package:flutter_tdt/core/view_models/language_model.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -33,7 +33,7 @@ class LanguageInitialPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.read<LanguageProvider>().setLang(context.locale);
+          context.read<LanguageModel>().setLang(context.locale);
         },
         child: Icon(Icons.arrow_right_alt, size: 40),
       ),

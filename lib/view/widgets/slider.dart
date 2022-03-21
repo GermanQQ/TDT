@@ -1,8 +1,8 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/constants/constans.dart';
-import 'package:flutter_tdt/core/providers/slider_provider.dart';
+import 'package:flutter_tdt/core/view_models/slider_model.dart';
+import 'package:flutter_tdt/view/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 class CustomSlider extends StatelessWidget {
@@ -11,7 +11,7 @@ class CustomSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = context.read<SliderProvider>();
+    final model = context.read<SliderModel>();
     return Column(
       children: [
         CarouselSlider(
@@ -30,14 +30,7 @@ class CustomSlider extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
-                        Container(
-                          height: 160,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                  image: CachedNetworkImageProvider(el.image),
-                                  fit: BoxFit.cover)),
-                        ),
+                        ImageTemplate(el.image),
                         SizedBox(height: 30),
                         Text(
                           el.title,
@@ -67,28 +60,27 @@ class CustomSlider extends StatelessWidget {
 }
 
 class _Dots extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: context.read<SliderProvider>().sliderData.map(
+      children: context.read<SliderModel>().sliderData.map(
         (el) {
-          int index = context.watch<SliderProvider>().sliderData.indexOf(el);
+          int index = context.watch<SliderModel>().sliderData.indexOf(el);
           return Container(
-            width: context.read<SliderProvider>().currentIndex == index
+            width: context.read<SliderModel>().currentIndex == index
                 ? 12.0
                 : 6.0,
-            height: context.read<SliderProvider>().currentIndex == index
+            height: context.read<SliderModel>().currentIndex == index
                 ? 12.0
                 : 6.0,
             margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
             decoration: BoxDecoration(
-                border: context.read<SliderProvider>().currentIndex == index
+                border: context.read<SliderModel>().currentIndex == index
                     ? Border.all(width: 3, color: accentColor)
                     : null,
                 shape: BoxShape.circle,
-                color: context.read<SliderProvider>().currentIndex == index
+                color: context.read<SliderModel>().currentIndex == index
                     ? Colors.white
                     : Color(0xFF9FA3A9)),
           );
