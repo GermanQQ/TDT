@@ -7,7 +7,7 @@ class AuthAPI {
   final auth = FirebaseAuth.instance;
   final _store = FirebaseFirestore.instance;
 
-  Future<UserModel> signIn(
+  Future<UserModel?> signIn(
       {required String username, required String password}) async {
     print("Autheficating");
     try {
@@ -18,7 +18,7 @@ class AuthAPI {
       return UserModel.fromMap(result);
     } catch (e) {
       print('Unauthenticated $e');
-      return UserModel();
+      return null;
     }
   }
 

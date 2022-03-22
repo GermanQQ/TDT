@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/providers/base_provider.dart';
+import 'package:flutter_tdt/core/view_models/base_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LanguageProvider extends BaseProvider {
+class LanguageModel extends BaseModel {
   static List<Locale> supportedLocales = [
-    const Locale.fromSubtags(languageCode: "en"),
-    const Locale.fromSubtags(languageCode: "ru"),
-    const Locale.fromSubtags(languageCode: "es"),
+    const Locale.fromSubtags(languageCode: 'en'),
+    const Locale.fromSubtags(languageCode: 'ru'),
+    const Locale.fromSubtags(languageCode: 'es'),
   ];
 
   static Locale? lang;
@@ -26,7 +26,7 @@ class LanguageProvider extends BaseProvider {
     
     return EasyLocalization(
         supportedLocales: supportedLocales,
-        path: 'assets/locale/',
+        path: 'assets/locale',
         useOnlyLangCode: true,
         startLocale: lang ?? supportedLocales[0],
         fallbackLocale: lang ?? supportedLocales[0],

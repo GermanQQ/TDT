@@ -1,7 +1,7 @@
 import 'package:flutter_tdt/core/models/models.dart';
-import 'package:flutter_tdt/core/providers/base_provider.dart';
+import 'package:flutter_tdt/core/view_models/base_model.dart';
 
-class SliderProvider extends BaseProvider {
+class SliderModel extends BaseModel {
   int currentIndex = 0;
   final sliderData = [
     SliderItemData(

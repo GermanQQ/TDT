@@ -14,6 +14,16 @@ class TDTTheme {
     fontWeight: FontWeight.w400,
     color: Colors.white,
   );
+  static TextStyle smallBoltWhite = GoogleFonts.poppins(
+    fontSize: 10.0,
+    fontWeight: FontWeight.w700,
+    color: Colors.white,
+  );
+  static TextStyle smallBoltBlack = GoogleFonts.poppins(
+    fontSize: 10.0,
+    fontWeight: FontWeight.w700,
+    color: Colors.black,
+  );
 
   static TextTheme lightTextTheme = TextTheme(
     bodyText1: GoogleFonts.poppins(

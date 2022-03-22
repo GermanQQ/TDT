@@ -1,17 +1,17 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_tdt/core/enums/enums.dart';
 import 'package:flutter_tdt/core/models/models.dart';
-import 'package:flutter_tdt/core/providers/auth_provider.dart';
-import 'package:flutter_tdt/core/providers/base_provider.dart';
 import 'package:flutter_tdt/core/utils/utils.dart';
+import 'package:flutter_tdt/core/view_models/auth_model.dart';
+import 'package:flutter_tdt/core/view_models/base_model.dart';
 import 'package:flutter_tdt/locator.dart';
 
-class RegisterProvider extends BaseProvider {
-  AuthProvider _auth = locator<AuthProvider>();
+class RegisterModel extends BaseModel {
+  AuthModel _auth = locator<AuthModel>();
   UserModel _user = UserModel();
   RegisterStep _step = RegisterStep.name;
   late AuthStatus authStatus;
-  RegisterProvider() {
+  RegisterModel() {
     authStatus = _auth.statusAuth;
   }
 
