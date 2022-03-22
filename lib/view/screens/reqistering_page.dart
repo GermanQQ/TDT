@@ -6,7 +6,8 @@ import 'package:flutter_tdt/view/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
 
-class RegisteringPage extends StatelessWidget {
+class RegisteringPage extends StatefulWidget {
+  const RegisteringPage ({ Key? key }) : super(key: key);
   static MaterialPage page() {
     return MaterialPage(
       name: Routes.reqister,
@@ -15,7 +16,13 @@ class RegisteringPage extends StatelessWidget {
     );
   }
 
+  @override
+  State<RegisteringPage> createState() => _RegisteringPageState();
+}
+
+class _RegisteringPageState extends State<RegisteringPage> {
   final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<RegisterModel>(

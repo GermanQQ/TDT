@@ -4,6 +4,7 @@ import 'package:flutter_tdt/view/widgets/widgets.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class InfinityZoomImage extends StatefulWidget {
+  const InfinityZoomImage();
   @override
   _InfinityZoomImageState createState() => _InfinityZoomImageState();
 }

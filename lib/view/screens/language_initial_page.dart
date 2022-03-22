@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class LanguageInitialPage extends StatelessWidget {
+  const LanguageInitialPage({Key? key}) : super(key: key);
   static MaterialPage page() {
     return MaterialPage(
       name: Routes.initialLang,
@@ -22,11 +23,11 @@ class LanguageInitialPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LogoImage(),
-            SizedBox(height: 50),
-            DropDownLang(),
-            SizedBox(height: 10),
-            Text('selectLang'.tr(),
+           const LogoImage(),
+           const SizedBox(height: 50),
+           const DropDownLang(),
+           const SizedBox(height: 10),
+          Text('selectLang',
                 style: Theme.of(context).textTheme.bodyText2),
           ],
         ),

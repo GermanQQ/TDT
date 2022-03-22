@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/models/models.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 
+final List courses = mockData.map((e) => Course.fromJson(e)).toList();
 class CoursesPage extends StatelessWidget {
-  final List courses = mockData.map((e) => Course.fromJson(e)).toList();
+  const CoursesPage({Key? key}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: ListView.separated(
           clipBehavior: Clip.none,
-          itemBuilder: (_, i) => CourseCard(courses[i]),
+          itemBuilder: (_, i) =>  CourseCard(courses[i]),
           separatorBuilder: (_, __) => SizedBox(height: 15),
           itemCount: courses.length,
         ));

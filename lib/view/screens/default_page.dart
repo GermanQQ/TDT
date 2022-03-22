@@ -10,7 +10,7 @@ class DefaultPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: body,
-      bottomNavigationBar: showBottomBar ? CustomBottomBar() : null,
+      bottomNavigationBar: showBottomBar ? const CustomBottomBar() : null,
     );
   }
 }

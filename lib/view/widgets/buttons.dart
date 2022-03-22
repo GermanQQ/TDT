@@ -53,7 +53,7 @@ class CustomButton extends StatelessWidget {
 
 class SkipButton extends StatelessWidget {
   final VoidCallback? onPressed;
-  SkipButton({this.onPressed});
+  const SkipButton({this.onPressed});
   @override
   Widget build(BuildContext context) {
     return Padding(

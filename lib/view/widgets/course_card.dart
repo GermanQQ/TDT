@@ -5,7 +5,7 @@ import 'package:flutter_tdt/view/widgets/widgets.dart';
 
 class CourseCard extends StatelessWidget {
   final Course course;
-  CourseCard(this.course);
+  const CourseCard(this.course);
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;

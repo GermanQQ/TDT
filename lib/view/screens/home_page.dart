@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'default_Page.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
   static MaterialPage page() {
     return MaterialPage(
       name: Routes.home,
@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  final _pages = [PoolExpertPage(), CoursesPage(), ProfilePage()];
+  static const _pages = [PoolExpertPage(), CoursesPage(), ProfilePage()];
 
   @override
   Widget build(BuildContext context) {

@@ -8,8 +8,8 @@ import 'package:provider/provider.dart';
 
 import '../../locator.dart';
 
-class SliderPage extends StatelessWidget {
-
+class SliderPage extends StatefulWidget {
+  const SliderPage();
   static MaterialPage page() {
     return MaterialPage(
       name: Routes.sliderPage,
@@ -18,6 +18,11 @@ class SliderPage extends StatelessWidget {
     );
   }
 
+  @override
+  State<SliderPage> createState() => _SliderPageState();
+}
+
+class _SliderPageState extends State<SliderPage> {
   final CarouselController _buttonCarouselController = CarouselController();
 
   @override
@@ -42,9 +47,9 @@ class SliderPage extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomSlider(controller: _buttonCarouselController),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     CustomButton(title: 'Register', onPressed: () => locator<Routes>().tapOnRegister(true)),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     CustomButton(
                         title: 'Log in',
                         onPressed: () => locator<Routes>().tapOnLogin(true),

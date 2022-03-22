@@ -17,7 +17,6 @@ class AuthModel extends BaseModel {
   appStarted() async {
     print('AppStarted');
     changeStatus(AuthStatus.Authenticating);
-    await Future.delayed(Duration(seconds: 2));
     changeStatus(await _authAPI.isAuthorized());
   }
 

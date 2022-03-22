@@ -6,6 +6,7 @@ import 'package:flutter_tdt/core/view_models/language_model.dart';
 import '../../core/utils/utils.dart';
 
 class DropDownLang extends StatelessWidget {
+  const DropDownLang({ Key? key }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
