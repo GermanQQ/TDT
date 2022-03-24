@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/constants/constans.dart';
+import 'package:flutter_tdt/core/domain/constants/constans.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';

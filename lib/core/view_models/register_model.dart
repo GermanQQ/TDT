@@ -1,7 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:flutter_tdt/core/enums/enums.dart';
+import 'package:flutter_tdt/core/domain/enums/enums.dart';
 import 'package:flutter_tdt/core/models/models.dart';
-import 'package:flutter_tdt/core/utils/utils.dart';
+import 'package:flutter_tdt/core/domain/utils/utils.dart';
 import 'package:flutter_tdt/core/view_models/auth_model.dart';
 import 'package:flutter_tdt/core/view_models/base_model.dart';
 import 'package:flutter_tdt/locator.dart';

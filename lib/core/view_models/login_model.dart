@@ -1,4 +1,4 @@
-import 'package:flutter_tdt/core/enums/enums.dart';
+import 'package:flutter_tdt/core/domain/enums/enums.dart';
 import 'package:flutter_tdt/core/view_models/base_model.dart';
 
 import '../../locator.dart';

@@ -9,7 +9,7 @@ import 'package:flutter_tdt/core/view_models/auth_model.dart';
 import 'package:flutter_tdt/core/view_models/language_model.dart';
 import 'package:flutter_tdt/locator.dart';
 import 'package:provider/provider.dart';
-import 'core/constants/constans.dart';
+import 'core/domain/constants/constans.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

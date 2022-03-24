@@ -1,4 +1,4 @@
-enum AuthStatus { Uninitialized, Authenticated, Authenticating, Unauthenticated, Registering, Failed, Logout}
+enum AuthStatus { Uninitialized, Authenticated, Authenticating, Unauthenticated, Registering, Failed}
 
 enum ViewState { Idle, Busy }
 

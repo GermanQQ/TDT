@@ -1,4 +1,4 @@
-import 'package:flutter_tdt/core/enums/enums.dart';
+import 'package:flutter_tdt/core/domain/enums/enums.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:flutter_tdt/core/network/auth_api.dart';
 
@@ -50,7 +50,8 @@ class AuthModel extends BaseModel {
   Future signOut() async {
     _authAPI.auth.signOut();
     _user = UserModel();
-    _status = AuthStatus.Logout;
+    _status = AuthStatus.Unauthenticated;
     locator<Routes>().tapOnLogin(true);
+    locator<Routes>().currentIndex = 1;
   }
 }

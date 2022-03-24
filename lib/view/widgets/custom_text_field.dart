@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/constants/constans.dart';
-import 'package:flutter_tdt/core/utils/utils.dart';
+import 'package:flutter_tdt/core/domain/constants/constans.dart';
+import 'package:flutter_tdt/core/domain/utils/utils.dart';
 
 class CustomTextField extends StatefulWidget {
   final String? hintText;

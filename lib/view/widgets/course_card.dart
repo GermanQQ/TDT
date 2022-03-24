@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/constants/constans.dart';
+import 'package:flutter_tdt/core/domain/constants/constans.dart';
 import 'package:flutter_tdt/core/models/models.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/view_models/register_model.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/constants/constans.dart';
-import '../../core/enums/enums.dart';
+import '../../core/domain/constants/constans.dart';
+import '../../core/domain/enums/enums.dart';
 import 'buttons.dart';
 
 class MessageTextField extends StatelessWidget {

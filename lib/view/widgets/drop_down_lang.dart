@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_tdt/core/constants/constans.dart';
+import 'package:flutter_tdt/core/domain/constants/constans.dart';
 import 'package:flutter_tdt/core/view_models/language_model.dart';
 
-import '../../core/utils/utils.dart';
+import '../../core/domain/utils/utils.dart';
 
 class DropDownLang extends StatelessWidget {
   const DropDownLang({ Key? key }) : super(key: key);

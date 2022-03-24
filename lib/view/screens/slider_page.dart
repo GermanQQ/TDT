@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/enums/enums.dart';
+import 'package:flutter_tdt/core/domain/enums/enums.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:flutter_tdt/core/view_models/slider_model.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';

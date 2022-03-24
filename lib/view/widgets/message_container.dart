@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../core/constants/constans.dart';
-import '../../core/enums/enums.dart';
+import '../../core/domain/constants/constans.dart';
+import '../../core/domain/enums/enums.dart';
 
 class MessageContainer extends StatelessWidget {
   final MessageType type;

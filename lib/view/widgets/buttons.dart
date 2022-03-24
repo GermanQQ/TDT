@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/constants/constans.dart';
-import 'package:flutter_tdt/core/enums/enums.dart';
+import 'package:flutter_tdt/core/domain/constants/constans.dart';
+import 'package:flutter_tdt/core/domain/enums/enums.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;
