@@ -1,11 +1,10 @@
+export 'buttons_enum.dart';
+// ignore: constant_identifier_names
 enum AuthStatus { Uninitialized, Authenticated, Authenticating, Unauthenticated, Registering, Failed}
-
+// ignore: constant_identifier_names
 enum ViewState { Idle, Busy }
-
-enum ButtonType { white, blue }
 
 enum MessageType { output, input }
 
 enum RegisterStep { name, email, password }
 
-enum PageType {INITIAL_LOADING, LOGIN, REGISTER, SLIDER, INITIAL_LANGUAGE, COURSES}

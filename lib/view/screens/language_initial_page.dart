@@ -11,7 +11,7 @@ class LanguageInitialPage extends StatelessWidget {
     return MaterialPage(
       name: Routes.initialLang,
       key: ValueKey(Routes.initialLang),
-      child: LanguageInitialPage(),
+      child: const LanguageInitialPage(),
     );
   }
 
@@ -36,7 +36,7 @@ class LanguageInitialPage extends StatelessWidget {
         onPressed: () {
           context.read<LanguageModel>().setLang(context.locale);
         },
-        child: Icon(Icons.arrow_right_alt, size: 40),
+        child: const Icon(Icons.arrow_right_alt, size: 40),
       ),
     );
   }

@@ -9,11 +9,11 @@ class CoursesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: ListView.separated(
           clipBehavior: Clip.none,
           itemBuilder: (_, i) =>  CourseCard(courses[i]),
-          separatorBuilder: (_, __) => SizedBox(height: 15),
+          separatorBuilder: (_, __) => const SizedBox(height: 15),
           itemCount: courses.length,
         ));
   }

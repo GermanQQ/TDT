@@ -15,14 +15,14 @@ class CustomBottomBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const _BottomItem(
+        children: const [
+          _BottomItem(
               icon: Icons.language,
               label: 'POOL OF EXPERT',
               index: Routes.poolExpert),
-          const _BottomItem(
+          _BottomItem(
               icon: Icons.dashboard, label: 'COURSES', index: Routes.courses),
-          const _BottomItem(
+          _BottomItem(
               icon: Icons.person, label: 'PROFILE', index: Routes.profile)
         ],
       ),
@@ -41,7 +41,7 @@ class _BottomItem extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isSelected = context.watch<Routes>().currentIndex == index;
     return AnimatedContainer(
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -53,11 +53,11 @@ class _BottomItem extends StatelessWidget {
                 MaterialButton(
                   onPressed: () => context.read<Routes>().currentIndex = index,
                   elevation: isSelected ? 1 : 0,
-                  shape: CircleBorder(),
+                  shape: const CircleBorder(),
                   color: isSelected ? accentColor : Colors.white,
                   highlightElevation: 0,
                   child: Container(
-                    padding: EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(15),
                     child: Icon(icon,
                         size: isSelected ? 30 : 25,
                         color: isSelected ? Colors.white : accentColor),

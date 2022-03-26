@@ -9,7 +9,7 @@ class LogoImage extends StatelessWidget {
     return Image(
       width: width,
       height: height,
-      image: AssetImage('assets/images/bg-logo.png'),
+      image: const AssetImage('assets/images/bg-logo.png'),
     );
   }
 }

@@ -1,55 +1,39 @@
+import 'dart:developer';
+
 import 'package:flutter_tdt/core/domain/enums/enums.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
-import 'package:flutter_tdt/core/network/auth_api.dart';
+import 'package:flutter_tdt/core/network/auth_service.dart';
 
 import '../../locator.dart';
-import '../models/models.dart';
 import 'base_model.dart';
 
 class AuthModel extends BaseModel {
-  AuthAPI _authAPI = locator<AuthAPI>();
+  final _authService = locator<AuthService>();
   AuthStatus _status = AuthStatus.Uninitialized;
-  UserModel? _user;
 
   AuthStatus get statusAuth => _status;
-  UserModel? get user => _user;
 
   appStarted() async {
-    print('AppStarted');
+    log('AppStarted');
     changeStatus(AuthStatus.Authenticating);
-    changeStatus(await _authAPI.isAuthorized());
+    changeStatus(await _authService.isAuthorized());
   }
 
   changeStatus(AuthStatus status) {
-    print(_status.toString() + ' ===> ' + status.toString());
+    log(_status.toString() + ' ===> ' + status.toString());
     _status = status;
     refresh();
   }
 
-  Future<void> signIn(
-      {required String username, required String password}) async {
+  Future<void> onPressSignIn(String username, String password) async {
     changeStatus(AuthStatus.Authenticating);
-    _user = await _authAPI.signIn(username: username, password: password);
-    changeStatus(
-        _user != null ? AuthStatus.Authenticated : AuthStatus.Unauthenticated);
+    bool isAuthorized =
+        await _authService.signIn(username: username, password: password);
+    changeStatus(isAuthorized ? AuthStatus.Authenticated : AuthStatus.Failed);
   }
 
-  Future<bool> register(UserModel _user, String password) async {
-    try {
-      await _authAPI.auth.createUserWithEmailAndPassword(
-          email: _user.email ?? 'none', password: password);
-      _user = await _authAPI.setUserFromFirebase(_user);
-      await signIn(username: _user.email ?? 'none', password: password);
-      return _status == AuthStatus.Authenticated;
-    } catch (e) {
-      print(e);
-      return false;
-    }
-  }
-
-  Future signOut() async {
-    _authAPI.auth.signOut();
-    _user = UserModel();
+  Future<void> onPressSignOut() async {
+    _authService.signOut();
     _status = AuthStatus.Unauthenticated;
     locator<Routes>().tapOnLogin(true);
     locator<Routes>().currentIndex = 1;

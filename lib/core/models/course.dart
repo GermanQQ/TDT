@@ -13,11 +13,11 @@ class Course {
   });
 
   Course.fromJson(Map json){
-    this.title = json['title'];
-    this.descritrion = json['descritrion'];
-    this.qtyModules = json['modules_qty'];
-    this.time = json['time'];
-    this.price = json['price'];
-    this.imageUrl = json['image'];
+    title = json['title'];
+    descritrion = json['descritrion'];
+    qtyModules = json['modules_qty'];
+    time = json['time'];
+    price = json['price'];
+    imageUrl = json['image'];
   }
 }

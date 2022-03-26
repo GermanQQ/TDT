@@ -13,7 +13,7 @@ class DropDownLang extends StatelessWidget {
       child: DropdownButton(
           value: context.locale,
           dropdownColor: bgColor,
-          icon: RotatedBox(quarterTurns: 3, child: Icon(Icons.arrow_back_ios_new, color: Colors.black)),
+          icon: const RotatedBox(quarterTurns: 3, child: Icon(Icons.arrow_back_ios_new, color: Colors.black)),
           onChanged: (value) {},
           items: LanguageModel.supportedLocales
               .map((e) => DropdownMenuItem(

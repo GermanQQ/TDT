@@ -20,7 +20,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp() {
+  MyApp({Key? key}) : super(key: key) {
     locator<AuthModel>().appStarted();
   }
 
