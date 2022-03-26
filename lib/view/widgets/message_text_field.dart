@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/view_models/register_model.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/constants/constans.dart';
-import '../../core/enums/enums.dart';
+import '../../core/domain/constants/constans.dart';
+import '../../core/domain/enums/enums.dart';
 import 'buttons.dart';
 
 class MessageTextField extends StatelessWidget {
@@ -16,7 +16,7 @@ class MessageTextField extends StatelessWidget {
     final provider = Provider.of<RegisterModel>(context, listen: false);
 
     _sendMessage() {
-      if (_textController.text.length > 0 &&
+      if (_textController.text.isNotEmpty &&
           provider.messages.last.type == MessageType.output) {
         provider.addMessage(_textController.text);
         _textController.text = '';
@@ -25,7 +25,7 @@ class MessageTextField extends StatelessWidget {
     }
 
     return Container(
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       color: Colors.white,
       child: Row(
         children: [
@@ -45,18 +45,18 @@ class MessageTextField extends StatelessWidget {
                 autofocus: true,
                 decoration: InputDecoration(
                     hintText: 'Message...',
-                    counterText: "",
+                    counterText:'',
                     hintStyle: Theme.of(context).textTheme.headline5,
-                    labelStyle: TextStyle(color: Colors.white),
+                    labelStyle: const TextStyle(color: Colors.white),
                     contentPadding:
-                        EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     enabledBorder: InputBorder.none,
                     isDense: true,
                     focusedBorder: InputBorder.none),
               ),
             ),
           ),
-          SizedBox(width: 4),
+          const SizedBox(width: 4),
           SendBtn(onPressed: () => _sendMessage())
         ],
       ),

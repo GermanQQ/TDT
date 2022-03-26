@@ -21,7 +21,7 @@ class _InfinityZoomImageState extends State<InfinityZoomImage>
     super.initState();
 
     _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 700))
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 700))
           ..addStatusListener((status) {
             if (status == AnimationStatus.completed) {
               _animationController.repeat(reverse: !reverse);

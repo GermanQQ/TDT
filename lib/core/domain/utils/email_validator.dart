@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 String? isValidEmail(String email) {
   bool _isCorrectEmail =
       email.length > 1 ? isCorrectEmail.hasMatch(email) : false;
-  return _isCorrectEmail ? null : "Check your email";
+  return _isCorrectEmail ? null : 'Check your email';
 }
 
 final RegExp isCorrectEmail = RegExp(

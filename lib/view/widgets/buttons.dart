@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/constants/constans.dart';
-import 'package:flutter_tdt/core/enums/enums.dart';
+import 'package:flutter_tdt/core/domain/constants/constans.dart';
+import 'package:flutter_tdt/core/domain/enums/enums.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;
@@ -9,29 +9,29 @@ class CustomButton extends StatelessWidget {
   final double height;
   final ButtonType type;
 
-  CustomButton({
+ const CustomButton({Key? key, 
     required this.title,
     this.onPressed,
     this.width = double.infinity,
     this.height = 59,
     this.type = ButtonType.blue,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Color btnColor = type == ButtonType.white ? Colors.white : accentColor;
     final width = MediaQuery.of(context).size.width;
 
     return Container(
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(10), border: Border.all(width: 1, color: accentColor)),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(width: 1, color: accentColor)),
       child: MaterialButton(
         elevation: 0,
         onPressed: onPressed,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        color: btnColor,
-        splashColor: btnColor.withOpacity(0.8),
-        disabledColor: Color(0xFF8796AD),
+        color: type.color,
+        splashColor: type.color.withOpacity(0.8),
+        disabledColor: const Color(0xFF8796AD),
         highlightColor: Colors.transparent,
         child: Container(
           alignment: Alignment.center,
@@ -40,8 +40,9 @@ class CustomButton extends StatelessWidget {
           child: Center(
             child: Text(
               title,
-              style:
-                  type == ButtonType.white ? Theme.of(context).textTheme.headline4 : TDTTheme.darkTextTheme.headline4,
+              style: type == ButtonType.white
+                  ? Theme.of(context).textTheme.headline4
+                  : TDTTheme.darkTextTheme.headline4,
               textAlign: TextAlign.center,
             ),
           ),
@@ -64,11 +65,11 @@ class SkipButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         color: Colors.white,
         splashColor: Colors.transparent,
-        disabledColor: Color(0xFF8796AD),
+        disabledColor: const Color(0xFF8796AD),
         highlightColor: Colors.transparent,
         child: Container(
           alignment: Alignment.center,
-          padding: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
           child: Center(
             child: Text(
               'skip',
@@ -84,20 +85,20 @@ class SkipButton extends StatelessWidget {
 
 class CustomBackBtn extends StatelessWidget {
   final VoidCallback? onPressed;
-  CustomBackBtn({this.onPressed});
+  const CustomBackBtn({this.onPressed});
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 10, top: 5, bottom: 5),
+      padding: const EdgeInsets.only(left: 10, top: 5, bottom: 5),
       child: MaterialButton(
         elevation: 0.4,
         onPressed: onPressed ?? () => Navigator.pop(context),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         color: Colors.white,
         splashColor: Colors.transparent,
-        disabledColor: Color(0xFF8796AD),
+        disabledColor: const Color(0xFF8796AD),
         highlightColor: Colors.transparent,
-        child: Icon(Icons.arrow_back_ios),
+        child: const Icon(Icons.arrow_back_ios),
       ),
     );
   }
@@ -106,7 +107,7 @@ class CustomBackBtn extends StatelessWidget {
 class SendBtn extends StatelessWidget {
   final VoidCallback? onPressed;
   final double size;
-  SendBtn({this.onPressed, this.size = 40.0});
+  const SendBtn({this.onPressed, this.size = 40.0});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -117,9 +118,10 @@ class SendBtn extends StatelessWidget {
           Container(
             width: size,
             height: size,
-            decoration: BoxDecoration(color: accentColor, borderRadius: BorderRadius.circular(50)),
+            decoration: BoxDecoration(
+                color: accentColor, borderRadius: BorderRadius.circular(50)),
           ),
-          Icon(Icons.arrow_upward, color: Colors.white)
+          const Icon(Icons.arrow_upward, color: Colors.white)
         ],
       ),
     );

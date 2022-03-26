@@ -1,6 +1,6 @@
 export 'slider_page.dart';
 export 'courses_page.dart';
-export 'home_Page.dart';
+export 'home_page.dart';
 export 'splash_page.dart';
 export 'laguage_change_page.dart';
 export 'language_initial_page.dart';

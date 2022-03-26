@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/constants/constans.dart';
-import 'package:flutter_tdt/core/utils/utils.dart';
+import 'package:flutter_tdt/core/domain/constants/constans.dart';
+import 'package:flutter_tdt/core/domain/utils/utils.dart';
 
 class CustomTextField extends StatefulWidget {
   final String? hintText;
@@ -9,7 +9,7 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final Function(String text)? onChanged;
   final TextEditingController? controller;
-  CustomTextField({
+  const CustomTextField({
     this.hintText,
     this.maxLength = 40,
     this.showCounterText = false,
@@ -27,46 +27,43 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // height: 50,
-      child: Stack(
-        children: [
-          TextFormField(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator: (input) => widget.isPassword ? isValidPassword(input ?? '') : isValidEmail(input ?? ''),
-            onChanged: widget.onChanged,
-            maxLines: 1,
-            cursorColor: accentColor,
-            controller: widget.controller,
-            obscureText: widget.isPassword && hideContent,
-            enableSuggestions: widget.isPassword ? false : true,
-            autocorrect: widget.isPassword ? false : true,
-            style: Theme.of(context).textTheme.headline4,
-            maxLength: widget.maxLength,
-            decoration: InputDecoration(
-              hintText: widget.hintText ?? "",
-              counterText: widget.showCounterText ? null : "",
-              hintStyle: Theme.of(context).textTheme.headline5,
-              labelStyle: TextStyle(color: Colors.white),
-              contentPadding: EdgeInsets.only(left: 6, right: widget.isPassword ? 50 : 6),
-              enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: grayColor),
-              ),
-              focusedBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: accentColor),
-              ),
+    return Stack(
+      children: [
+        TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (input) => widget.isPassword ? isValidPassword(input ?? '') : isValidEmail(input ?? ''),
+          onChanged: widget.onChanged,
+          maxLines: 1,
+          cursorColor: accentColor,
+          controller: widget.controller,
+          obscureText: widget.isPassword && hideContent,
+          enableSuggestions: widget.isPassword ? false : true,
+          autocorrect: widget.isPassword ? false : true,
+          style: Theme.of(context).textTheme.headline4,
+          maxLength: widget.maxLength,
+          decoration: InputDecoration(
+            hintText: widget.hintText ?? '',
+            counterText: widget.showCounterText ? null : '',
+            hintStyle: Theme.of(context).textTheme.headline5,
+            labelStyle: const TextStyle(color: Colors.white),
+            contentPadding: EdgeInsets.only(left: 6, right: widget.isPassword ? 50 : 6),
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: grayColor),
+            ),
+            focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: accentColor),
             ),
           ),
-          if (widget.isPassword)
-            Positioned(
-              top: 6,
-              right: 0,
-              child: GestureDetector(
-                  onTap: () => setState(() => hideContent = !hideContent),
-                  child: Icon(hideContent ? Icons.visibility : Icons.visibility_off, size: 30, color: grayColor)),
-            )
-        ],
-      ),
+        ),
+        if (widget.isPassword)
+          Positioned(
+            top: 6,
+            right: 0,
+            child: GestureDetector(
+                onTap: () => setState(() => hideContent = !hideContent),
+                child: Icon(hideContent ? Icons.visibility : Icons.visibility_off, size: 30, color: grayColor)),
+          )
+      ],
     );
   }
 }

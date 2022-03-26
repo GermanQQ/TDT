@@ -1,9 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:flutter_tdt/view/screens/sreens.dart';
 import 'package:provider/provider.dart';
 
-import 'default_Page.dart';
+import 'default_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     return MaterialPage(
       name: Routes.home,
       key: ValueKey(Routes.home),
-      child: HomeScreen(),
+      child: const HomeScreen(),
     );
   }
 

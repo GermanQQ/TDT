@@ -3,7 +3,7 @@ import 'package:flutter_tdt/view/widgets/widgets.dart';
 
 class LoginForm extends StatelessWidget {
   final GlobalKey<FormState> _formKey;
-  LoginForm(this._formKey,{required this.loginControler,required this.passwordControler});
+  const LoginForm(this._formKey,{required this.loginControler,required this.passwordControler});
   final TextEditingController loginControler;
   final TextEditingController passwordControler;
 
@@ -14,7 +14,7 @@ class LoginForm extends StatelessWidget {
       child: Column(
         children: [
           CustomTextField(hintText: 'user name', controller: loginControler),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           CustomTextField(
             hintText: '*************',
             isPassword: true,

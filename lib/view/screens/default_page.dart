@@ -4,7 +4,7 @@ import 'package:flutter_tdt/view/widgets/widgets.dart';
 class DefaultPage extends StatelessWidget {
   final Widget body;
   final bool showBottomBar;
-  const DefaultPage({required this.body, this.showBottomBar = true});
+  const DefaultPage({Key? key, required this.body, this.showBottomBar = true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

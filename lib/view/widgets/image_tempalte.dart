@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ImageTemplate extends StatelessWidget {
   final String imageUrl;
   final double heigth;
-  ImageTemplate(this.imageUrl, {this.heigth = 160});
+  const ImageTemplate(this.imageUrl, {this.heigth = 160});
 
   @override
   Widget build(BuildContext context) {

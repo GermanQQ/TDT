@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/enums/enums.dart';
+import 'package:flutter_tdt/core/domain/enums/enums.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:flutter_tdt/core/view_models/slider_model.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
@@ -9,12 +9,13 @@ import 'package:provider/provider.dart';
 import '../../locator.dart';
 
 class SliderPage extends StatefulWidget {
-  const SliderPage();
+  const SliderPage({Key? key}) : super(key: key);
+ 
   static MaterialPage page() {
     return MaterialPage(
       name: Routes.sliderPage,
       key: ValueKey(Routes.sliderPage),
-      child: SliderPage(),
+      child: const SliderPage(),
     );
   }
 
@@ -35,7 +36,7 @@ class _SliderPageState extends State<SliderPage> {
             Builder(
                 builder: (context) => SkipButton(
                       onPressed: () => _buttonCarouselController.nextPage(
-                          duration: Duration(milliseconds: 300), curve: Curves.linear),
+                          duration: const Duration(milliseconds: 300), curve: Curves.linear),
                     ))
           ],
         ),
@@ -43,7 +44,7 @@ class _SliderPageState extends State<SliderPage> {
           child: Center(
             child: SingleChildScrollView(
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
                     CustomSlider(controller: _buttonCarouselController),

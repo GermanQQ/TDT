@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../core/constants/constans.dart';
-import '../../core/enums/enums.dart';
+import '../../core/domain/constants/constans.dart';
+import '../../core/domain/enums/enums.dart';
 
 class MessageContainer extends StatelessWidget {
   final MessageType type;
   final String message;
-  MessageContainer({this.type = MessageType.output, this.message = ''});
+  const MessageContainer({this.type = MessageType.output, this.message = ''});
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +18,19 @@ class MessageContainer extends StatelessWidget {
       children: [
         Container(
           constraints: BoxConstraints(maxWidth: width - 60),
-          padding: EdgeInsets.only(left: 15, top: 11, bottom: 11, right: 15),
+          padding:
+              const EdgeInsets.only(left: 15, top: 11, bottom: 11, right: 15),
           decoration: BoxDecoration(
               color: type == MessageType.output ? Colors.white : accentColor,
               borderRadius: BorderRadius.only(
                 bottomRight: type == MessageType.output
-                    ? Radius.circular(10)
+                    ? const Radius.circular(10)
                     : Radius.zero,
                 bottomLeft: type == MessageType.output
                     ? Radius.zero
-                    : Radius.circular(10),
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
+                    : const Radius.circular(10),
+                topLeft: const Radius.circular(10),
+                topRight: const Radius.circular(10),
               )),
           child: Text(
             message,

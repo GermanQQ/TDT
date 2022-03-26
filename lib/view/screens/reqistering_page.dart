@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/enums/enums.dart';
+import 'package:flutter_tdt/core/domain/enums/enums.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:flutter_tdt/core/view_models/register_model.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-
 class RegisteringPage extends StatefulWidget {
-  const RegisteringPage ({ Key? key }) : super(key: key);
+  const RegisteringPage({Key? key}) : super(key: key);
   static MaterialPage page() {
     return MaterialPage(
       name: Routes.reqister,
       key: ValueKey(Routes.reqister),
-      child: RegisteringPage(),
+      child: const RegisteringPage(),
     );
   }
 
@@ -34,33 +33,28 @@ class _RegisteringPageState extends State<RegisteringPage> {
             style: Theme.of(context).textTheme.headline3,
           ),
           leadingWidth: 60,
-          leading: CustomBackBtn(),
+          leading: const CustomBackBtn(),
         ),
         body: Stack(
           children: [
             Consumer<RegisterModel>(
-              builder: (context, model, child) {
-                switch (model.authStatus) {
-                  case AuthStatus.Unauthenticated:
-                  case AuthStatus.Uninitialized:
-                    return Container(
-                      padding: EdgeInsets.only(
-                          left: 15, right: 15, top: 15, bottom: 80),
-                      child: ListView.separated(
-                        controller: _scrollController,
-                        itemBuilder: (context, i) => MessageContainer(
-                          message: model.messages[i].message,
-                          type: model.messages[i].type,
-                        ),
-                        separatorBuilder: (context, i) => SizedBox(height: 10),
-                        itemCount: model.messages.length,
-                      ),
-                    );
-                  default:
-                    return Center(child: CircularProgressIndicator());
-                }
-              },
-            ),
+                builder: (context, model, child) =>
+                    model.state == ViewState.Idle
+                        ? Container(
+                            padding: const EdgeInsets.only(
+                                left: 15, right: 15, top: 15, bottom: 80),
+                            child: ListView.separated(
+                              controller: _scrollController,
+                              itemBuilder: (context, i) => MessageContainer(
+                                message: model.messages[i].message,
+                                type: model.messages[i].type,
+                              ),
+                              separatorBuilder: (context, i) =>
+                                  const SizedBox(height: 10),
+                              itemCount: model.messages.length,
+                            ),
+                          )
+                        : const Center(child: InfinityZoomImage())),
             Align(
               alignment: Alignment.bottomCenter,
               child: MessageTextField(_scrollController),

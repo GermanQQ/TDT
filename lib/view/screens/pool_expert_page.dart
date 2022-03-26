@@ -11,9 +11,9 @@ class PoolExpertPage extends StatelessWidget {
       child: Center(
           child: IconButton(
         onPressed: () {
-          locator<AuthModel>().signOut();
+          locator<AuthModel>().onPressSignOut();
         },
-        icon: Icon(Icons.logout),
+        icon: const Icon(Icons.logout),
       )),
     );
   }
