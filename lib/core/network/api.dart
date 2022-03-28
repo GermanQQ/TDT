@@ -1,1 +1,1 @@
-class API {}
+abstract class API {}
