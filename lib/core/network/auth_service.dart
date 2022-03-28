@@ -6,8 +6,9 @@ import 'package:flutter_tdt/core/domain/enums/enums.dart';
 import 'package:flutter_tdt/core/models/user_model.dart';
 
 class AuthService {
-  final auth = FirebaseAuth.instance;
-  final _store = FirebaseFirestore.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore store = FirebaseFirestore.instance;
+  
   UserModel? _user;
   UserModel? get user => _user;
 
@@ -25,8 +26,8 @@ class AuthService {
       }
       return _user != null ? true : false;
     } catch (e) {
-      log('Unauthenticated $e');
-      return false;
+      log('Error signIn:', error: e);
+      rethrow;
     }
   }
 
@@ -60,11 +61,11 @@ class AuthService {
 
   Future<void> setUserToFirestore(UserModel user, User firebaseUser) async {
     user.uid = firebaseUser.uid;
-    await _store.collection('users').doc(user.uid).set(user.toMap());
+    await store.collection('users').doc(user.uid).set(user.toMap());
   }
 
   Future<UserModel> getUserFromFirestore(String uid) async {
-    final result = await _store.collection('users').doc(uid).get();
+    final result = await store.collection('users').doc(uid).get();
     return UserModel.fromMap(result);
   }
 }

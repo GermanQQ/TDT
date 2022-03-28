@@ -42,40 +42,43 @@ class _BottomItem extends StatelessWidget {
     bool isSelected = context.watch<Routes>().currentIndex == index;
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Transform.translate(
-            offset: Offset(0, isSelected ? -30 : 0),
-            child: Stack(
-              alignment: AlignmentDirectional.bottomCenter,
-              children: [
-                MaterialButton(
-                  onPressed: () => context.read<Routes>().currentIndex = index,
-                  elevation: isSelected ? 1 : 0,
-                  shape: const CircleBorder(),
-                  color: isSelected ? accentColor : Colors.white,
-                  highlightElevation: 0,
-                  child: Container(
-                    padding: const EdgeInsets.all(15),
-                    child: Icon(icon,
-                        size: isSelected ? 30 : 25,
-                        color: isSelected ? Colors.white : accentColor),
+      child: GestureDetector(
+        onTap: () => context.read<Routes>().currentIndex = index,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Transform.translate(
+              offset: Offset(0, isSelected ? -30 : 0),
+              child: Stack(
+                alignment: AlignmentDirectional.bottomCenter,
+                children: [
+                  MaterialButton(
+                    onPressed: () => context.read<Routes>().currentIndex = index,
+                    elevation: isSelected ? 1 : 0,
+                    shape: const CircleBorder(),
+                    color: isSelected ? accentColor : Colors.white,
+                    highlightElevation: 0,
+                    child: Container(
+                      padding: const EdgeInsets.all(15),
+                      child: Icon(icon,
+                          size: isSelected ? 30 : 25,
+                          color: isSelected ? Colors.white : accentColor),
+                    ),
                   ),
-                ),
-                Transform.translate(
-                    offset: Offset(0, isSelected ? 25 : 0),
-                    child: Text(
-                      label,
-                      style: GoogleFonts.workSans(
-                          fontSize: 9,
-                          fontWeight: FontWeight.w400,
-                          color: mediumGrey),
-                    )),
-              ],
+                  Transform.translate(
+                      offset: Offset(0, isSelected ? 25 : 0),
+                      child: Text(
+                        label,
+                        style: GoogleFonts.workSans(
+                            fontSize: 9,
+                            fontWeight: FontWeight.w400,
+                            color: mediumGrey),
+                      )),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -34,10 +34,17 @@ dev_dependencies:
   test: ^1.19.0
   firebase_auth_mocks: ^0.8.0
   lints: ^1.0.1
+  flutter_launcher_icons: ^0.9.0
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/logo_1.jpg"
 
 flutter:
   assets:
     - assets/
     - assets/images/
     - assets/locale/
+    - assets/icons/
   uses-material-design: true
