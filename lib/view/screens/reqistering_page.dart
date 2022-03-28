@@ -54,7 +54,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
                               itemCount: model.messages.length,
                             ),
                           )
-                        : const Center(child: SlpashWidget())),
+                        : const Center(child: SplashWidget())),
             Align(
               alignment: Alignment.bottomCenter,
               child: MessageTextField(_scrollController),

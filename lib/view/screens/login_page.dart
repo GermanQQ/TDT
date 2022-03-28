@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: status == AuthStatus.Authenticating
-            ? const SlpashWidget()
+            ? const SplashWidget()
             : Center(
                 child: SingleChildScrollView(
                   physics: const ClampingScrollPhysics(),

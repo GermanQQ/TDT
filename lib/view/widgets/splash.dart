@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/domain/constants/constans.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 
-import 'package:easy_localization/easy_localization.dart';
-
-class SlpashWidget extends StatefulWidget {
-  const SlpashWidget();
+class SplashWidget extends StatefulWidget {
+  const SplashWidget();
   @override
-  _SlpashWidgetState createState() => _SlpashWidgetState();
+  _SplashWidgetState createState() => _SplashWidgetState();
 }
 
-class _SlpashWidgetState extends State<SlpashWidget>
+class _SplashWidgetState extends State<SplashWidget>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation _sizeAnimation;
