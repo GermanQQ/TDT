@@ -35,32 +35,31 @@ class _RegisteringPageState extends State<RegisteringPage> {
           leadingWidth: 60,
           leading: const CustomBackBtn(),
         ),
-        body: Stack(
-          children: [
-            Consumer<RegisterModel>(
-                builder: (context, model, child) =>
-                    model.state == ViewState.Idle
-                        ? Container(
-                            padding: const EdgeInsets.only(
-                                left: 15, right: 15, top: 15, bottom: 80),
-                            child: ListView.separated(
-                              controller: _scrollController,
-                              itemBuilder: (context, i) => MessageContainer(
-                                message: model.messages[i].message,
-                                type: model.messages[i].type,
-                              ),
-                              separatorBuilder: (context, i) =>
-                                  const SizedBox(height: 10),
-                              itemCount: model.messages.length,
-                            ),
-                          )
-                        : const Center(child: SplashWidget())),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: MessageTextField(_scrollController),
-            )
-          ],
-        ),
+        body: Consumer<RegisterModel>(
+            builder: (context, model, child) => model.state == ViewState.Idle
+                ? Stack(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(
+                            left: 15, right: 15, top: 15, bottom: 80),
+                        child: ListView.separated(
+                          controller: _scrollController,
+                          itemBuilder: (context, i) => MessageContainer(
+                            message: model.messages[i].message,
+                            type: model.messages[i].type,
+                          ),
+                          separatorBuilder: (context, i) =>
+                              const SizedBox(height: 10),
+                          itemCount: model.messages.length,
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: MessageTextField(_scrollController),
+                      )
+                    ],
+                  )
+                : const Center(child: SplashWidget())),
       ),
     );
   }

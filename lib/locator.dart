@@ -6,13 +6,11 @@ import 'package:get_it/get_it.dart';
 
 import 'core/navigation/app_router.dart';
 import 'core/navigation/router.dart';
-import 'core/network/api.dart';
 
 GetIt locator = GetIt.instance;
 
 void setupLocator({bool testing = false}) {
   locator.registerLazySingleton(() => AuthService());
-  locator.registerLazySingleton(() => API());
   locator.registerLazySingleton(() => LanguageModel());
   locator.registerLazySingleton(() => AuthModel());
   locator.registerLazySingleton(() => AppRouter());

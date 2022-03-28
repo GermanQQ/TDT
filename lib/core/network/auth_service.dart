@@ -46,7 +46,7 @@ class AuthService {
     _user = null;
   }
 
-  Future<void> registerUser(UserModel user, String password) async {
+  Future<bool> registerUser(UserModel user, String password) async {
     String? userEmail = user.email;
     if (userEmail != null) {
       final credentials = await auth.createUserWithEmailAndPassword(
@@ -55,8 +55,10 @@ class AuthService {
       if (firebaseUser != null) {
         setUserToFirestore(user, firebaseUser);
         _user = await getUserFromFirestore(firebaseUser.uid);
+        return _user != null;
       }
     }
+    return false;
   }
 
   Future<void> setUserToFirestore(UserModel user, User firebaseUser) async {
