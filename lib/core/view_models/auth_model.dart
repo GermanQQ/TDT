@@ -1,6 +1,8 @@
 import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_tdt/core/domain/enums/enums.dart';
+import 'package:flutter_tdt/core/domain/utils/firebase_errors.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:flutter_tdt/core/network/auth_service.dart';
 
@@ -10,8 +12,10 @@ import 'base_model.dart';
 class AuthModel extends BaseModel {
   final _authService = locator<AuthService>();
   AuthStatus _status = AuthStatus.Uninitialized;
+  String? _errorMessage;
 
   AuthStatus get statusAuth => _status;
+  String? get error => _errorMessage;
 
   appStarted() async {
     log('AppStarted');
@@ -27,9 +31,16 @@ class AuthModel extends BaseModel {
 
   Future<void> onPressSignIn(String username, String password) async {
     changeStatus(AuthStatus.Authenticating);
-    bool isAuthorized =
-        await _authService.signIn(username: username, password: password);
-    changeStatus(isAuthorized ? AuthStatus.Authenticated : AuthStatus.Failed);
+    try {
+      await _authService.signIn(username: username, password: password);
+      changeStatus(AuthStatus.Authenticated);
+    } on FirebaseAuthException catch (e) {
+      changeStatus(AuthStatus.Failed);
+      _errorMessage = getMessageFromErrorCode(e.code);
+    } catch (_) {
+      changeStatus(AuthStatus.Failed);
+      _errorMessage = 'Some went wrong!';
+    }
   }
 
   Future<void> onPressSignOut() async {

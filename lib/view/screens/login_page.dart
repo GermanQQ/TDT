@@ -34,18 +34,19 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<AuthModel>();
+    final status = context.select(((AuthModel value) => value.statusAuth));
+    final error = context.select(((AuthModel value) => value.error));
 
-    if (provider.statusAuth == AuthStatus.Failed) {
+    if (status == AuthStatus.Failed && error != null) {
       Future.delayed(const Duration(milliseconds: 200),
-          () => showSnackBar(context, text: 'Wrong login or password'));
+          () => showSnackBar(context, text: error));
     }
 
     return Scaffold(
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: provider.statusAuth == AuthStatus.Authenticating
-            ? const InfinityZoomImage()
+        child: status == AuthStatus.Authenticating
+            ? const SlpashWidget()
             : Center(
                 child: SingleChildScrollView(
                   physics: const ClampingScrollPhysics(),
@@ -53,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
-                        const LogoImage(),
+                        const LogoImage(width: 75, height: 75),
                         const SizedBox(height: 40),
                         Text('Welcome back! \na Sign in to continue!',
                             style: Theme.of(context).textTheme.headline2,
@@ -69,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                             title: 'Log in',
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
-                                await provider.onPressSignIn(
+                                await context.read<AuthModel>().onPressSignIn(
                                     _loginControler.text,
                                     _passwordControler.text);
                               }

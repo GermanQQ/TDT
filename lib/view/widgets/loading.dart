@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tdt/core/domain/constants/constans.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 
 import 'package:easy_localization/easy_localization.dart';
 
-class InfinityZoomImage extends StatefulWidget {
-  const InfinityZoomImage();
+class SlpashWidget extends StatefulWidget {
+  const SlpashWidget();
   @override
-  _InfinityZoomImageState createState() => _InfinityZoomImageState();
+  _SlpashWidgetState createState() => _SlpashWidgetState();
 }
 
-class _InfinityZoomImageState extends State<InfinityZoomImage>
+class _SlpashWidgetState extends State<SlpashWidget>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation _sizeAnimation;
@@ -20,17 +21,17 @@ class _InfinityZoomImageState extends State<InfinityZoomImage>
   void initState() {
     super.initState();
 
-    _animationController =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 700))
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              _animationController.repeat(reverse: !reverse);
-              reverse = !reverse;
-            }
-          });
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 700))
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          _animationController.repeat(reverse: !reverse);
+          reverse = !reverse;
+        }
+      });
 
     _sizeAnimation =
-        Tween<double>(begin: 150.0, end: 144.0).animate(_animationController);
+        Tween<double>(begin: 50.0, end: 53.0).animate(_animationController);
     _animationController.forward();
   }
 
@@ -43,19 +44,24 @@ class _InfinityZoomImageState extends State<InfinityZoomImage>
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 150,
-            child: AnimatedBuilder(
-                animation: _sizeAnimation,
-                builder: (context, child) => LogoImage(
-                    width: _sizeAnimation.value + 30,
-                    height: _sizeAnimation.value)),
-          ),
-          Text('loading'.tr()),
-        ],
+      child: AnimatedBuilder(
+        animation: _sizeAnimation,
+        builder: (context, child) => Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            LogoImage(
+                width: _sizeAnimation.value, height: _sizeAnimation.value),
+            SizedBox(
+              width: _sizeAnimation.value + 35,
+              height: _sizeAnimation.value + 35,
+              child: const CircularProgressIndicator(
+                color: Colors.yellow,
+                backgroundColor: accentColor,
+                strokeWidth: 5,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
