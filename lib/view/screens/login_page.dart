@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/domain/enums/enums.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
-import 'package:flutter_tdt/core/view_models/auth_model.dart';
+import 'package:flutter_tdt/core/view_models/login_view.dart';
 import 'package:flutter_tdt/view/widgets/snackbar.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +12,10 @@ class LoginPage extends StatefulWidget {
     return MaterialPage(
       name: Routes.login,
       key: ValueKey(Routes.login),
-      child: const LoginPage(),
+      child: ChangeNotifierProvider<LoginView>(
+        create: (context) => LoginView(),
+        child: const LoginPage(),
+      ),
     );
   }
 
@@ -34,18 +37,18 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final status = context.select(((AuthModel value) => value.statusAuth));
-    final error = context.select(((AuthModel value) => value.error));
-
-    if (status == AuthStatus.Failed && error != null) {
-      Future.delayed(const Duration(milliseconds: 200),
-          () => showSnackBar(context, text: error));
+    bool hasError = context.select(((LoginView value) => value.hasError));
+    if (hasError) {
+      Future.delayed(
+          const Duration(milliseconds: 200),
+          () => showSnackBar(context,
+              text: context.read<LoginView>().errorMessage));
     }
 
     return Scaffold(
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
-        child: status == AuthStatus.Authenticating
+        child: context.watch<LoginView>().state == ViewState.Busy
             ? const SplashWidget()
             : Center(
                 child: SingleChildScrollView(
@@ -68,9 +71,9 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(height: 40),
                         CustomButton(
                             title: 'Log in',
-                            onPressed: () async {
+                            onPressed: () {
                               if (_formKey.currentState!.validate()) {
-                                await context.read<AuthModel>().onPressSignIn(
+                                context.read<LoginView>().onPressSignIn(
                                     _loginControler.text,
                                     _passwordControler.text);
                               }

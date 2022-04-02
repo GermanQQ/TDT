@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/domain/constants/constans.dart';
 import 'package:flutter_tdt/core/models/slider_item_data.dart';
-import 'package:flutter_tdt/core/view_models/slider_model.dart';
+import 'package:flutter_tdt/core/view_models/slider_view.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -12,7 +12,7 @@ class CustomSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = context.read<SliderModel>();
+    final model = context.read<SliderView>();
     return Column(
       children: [
         CarouselSlider(
@@ -73,23 +73,22 @@ class _ItemSlider extends StatelessWidget {
 class _Dots extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final provider = context.read<SliderView>();
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: context.read<SliderModel>().sliderData.map(
+      children: provider.sliderData.map(
         (el) {
-          int index = context.watch<SliderModel>().sliderData.indexOf(el);
+          int index = context.watch<SliderView>().sliderData.indexOf(el);
           return Container(
-            width:
-                context.read<SliderModel>().currentIndex == index ? 12.0 : 6.0,
-            height:
-                context.read<SliderModel>().currentIndex == index ? 12.0 : 6.0,
+            width: provider.currentIndex == index ? 12.0 : 6.0,
+            height: provider.currentIndex == index ? 12.0 : 6.0,
             margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
             decoration: BoxDecoration(
-                border: context.read<SliderModel>().currentIndex == index
+                border: provider.currentIndex == index
                     ? Border.all(width: 3, color: accentColor)
                     : null,
                 shape: BoxShape.circle,
-                color: context.read<SliderModel>().currentIndex == index
+                color: provider.currentIndex == index
                     ? Colors.white
                     : const Color(0xFF9FA3A9)),
           );

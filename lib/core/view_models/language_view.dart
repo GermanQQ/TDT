@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/view_models/base_model.dart';
+import 'package:flutter_tdt/core/view_models/base_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LanguageModel extends BaseModel {
+class LanguageView extends BaseView {
   static List<Locale> supportedLocales = [
     const Locale.fromSubtags(languageCode: 'en'),
     const Locale.fromSubtags(languageCode: 'ru'),

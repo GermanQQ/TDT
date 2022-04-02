@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/view_models/auth_model.dart';
+import 'package:flutter_tdt/core/services/auth_service.dart';
 import 'package:flutter_tdt/locator.dart';
 
 class PoolExpertPage extends StatelessWidget {
@@ -11,7 +11,7 @@ class PoolExpertPage extends StatelessWidget {
       child: Center(
           child: IconButton(
         onPressed: () {
-          locator<AuthModel>().onPressSignOut();
+          locator<AuthService>().signOut();
         },
         icon: const Icon(Icons.logout),
       )),

@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/domain/enums/enums.dart';
 
-class BaseModel extends ChangeNotifier {
+class BaseView extends ChangeNotifier {
   ViewState _state = ViewState.Idle;
   ViewState get state => _state;
 

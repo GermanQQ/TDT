@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/view_models/register_model.dart';
+import 'package:flutter_tdt/core/view_models/register_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/domain/constants/constans.dart';
@@ -13,7 +13,7 @@ class MessageTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<RegisterModel>(context, listen: false);
+    final provider = Provider.of<RegisterView>(context, listen: false);
 
     _sendMessage() {
       if (_textController.text.isNotEmpty &&
