@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
-import 'package:flutter_tdt/core/view_models/language_view.dart';
+import 'package:flutter_tdt/core/services/language_service.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
-import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class LanguageInitialPage extends StatelessWidget {
@@ -27,14 +26,14 @@ class LanguageInitialPage extends StatelessWidget {
            const SizedBox(height: 50),
            const DropDownLang(),
            const SizedBox(height: 10),
-          Text('selectLang',
+          Text('selectLang'.tr(),
                 style: Theme.of(context).textTheme.bodyText2),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.read<LanguageView>().setLang(context.locale);
+          LanguageService.setLang(context.locale);
         },
         child: const Icon(Icons.arrow_right_alt, size: 40),
       ),

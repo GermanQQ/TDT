@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/domain/constants/constans.dart';
 import 'package:flutter_tdt/core/models/slider_item_data.dart';
-import 'package:flutter_tdt/core/view_models/slider_view.dart';
+import 'package:flutter_tdt/view/view_models/slider_view.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -13,32 +13,36 @@ class CustomSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final model = context.read<SliderView>();
-    return Column(
-      children: [
-        CarouselSlider(
-          carouselController: controller,
-          options: CarouselOptions(
-              height: 350.0,
-              autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 3),
-              viewportFraction: 1,
-              onPageChanged: (index, _) => model.changeIndexSlide(index)),
-          items: model.sliderData.map(
-            (el) {
-              return Builder(
-                builder: (BuildContext context) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: _ItemSlider(el),
-                  );
-                },
-              );
-            },
-          ).toList(),
-        ),
-        _Dots()
-      ],
-    );
+    return model.sliderData.isNotEmpty
+        ? Column(
+            children: [
+              CarouselSlider(
+                carouselController: controller,
+                options: CarouselOptions(
+                    height: 350.0,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 3),
+                    viewportFraction: 1,
+                    onPageChanged: (index, _) => model.changeIndexSlide(index)),
+                items: model.sliderData.map(
+                  (el) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: _ItemSlider(el),
+                        );
+                      },
+                    );
+                  },
+                ).toList(),
+              ),
+              _Dots()
+            ],
+          )
+        : const Image(
+            image:  AssetImage('assets/images/welcome.png'),
+          );
   }
 }
 

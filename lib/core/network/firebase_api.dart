@@ -2,21 +2,35 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_tdt/core/models/slider_item_data.dart';
 import 'package:flutter_tdt/core/models/user_model.dart';
+import 'package:flutter_tdt/core/services/language_service.dart';
 
 class FirebaseAPI {
   static const String usersCollection = 'users';
+  static const String sourceCollection = 'source';
 
   final _auth = FirebaseAuth.instance;
   final _store = FirebaseFirestore.instance;
 
-  User? get _user => _auth.currentUser;
+  UserModel? _user;
 
-  Future<UserModel?> isAuthorized() async {
-    if (_user != null) {
-      return await getUser(_user!.uid);
+  UserModel? get user => _user;
+  User? get _userFirebase => _auth.currentUser;
+  String get _langCode =>
+      LanguageService.lang?.languageCode ??
+      LanguageService.defautlLang.languageCode;
+  String get _defaultLangCode => LanguageService.defautlLang.languageCode;
+
+  Future<void> initialize() async {
+    await _isAuthorized();
+  }
+
+  Future<void> _isAuthorized() async {
+    if (_userFirebase != null) {
+      _user = await getUser(_userFirebase!.uid);
     } else {
-      return null;
+      _user = null;
     }
   }
 
@@ -29,7 +43,7 @@ class FirebaseAPI {
     }
   }
 
-  Future<UserModel?> signIn(String username, String password) async {
+  Future<void> signIn(String username, String password) async {
     try {
       final credentials = await _auth.signInWithEmailAndPassword(
         email: username,
@@ -37,16 +51,17 @@ class FirebaseAPI {
       );
       final firebaseUser = credentials.user;
       if (firebaseUser != null) {
-        return await getUser(firebaseUser.uid);
+        _user = await getUser(firebaseUser.uid);
       }
     } catch (e) {
       log('Error signIn:', error: e);
       rethrow;
     }
-    return null;
+    _user = null;
   }
 
   void signOut() {
+    _user = null;
     _auth.signOut();
   }
 
@@ -57,9 +72,29 @@ class FirebaseAPI {
 
   Future<void> setUser(UserModel user) async {
     //when register user
-    user.uid = _user?.uid;
+    user.uid = _userFirebase?.uid;
     if (user.uid != null) {
       await _store.collection(usersCollection).doc(user.uid).set(user.toMap());
     }
+  }
+
+  Future<List<SliderItemData>> getSliderData() async {
+    List<SliderItemData> data = [];
+
+    final response =
+        await _store.collection(sourceCollection).doc('slider').get();
+
+    final result = response.data();
+
+    if (result != null && result.isNotEmpty) {
+      if (result.containsKey(_langCode)) {
+        result[_langCode]
+            .forEach((el) => data.add(SliderItemData.fromJson(el)));
+      } else if (result.containsKey(_defaultLangCode)) {
+        result[_defaultLangCode]
+            .forEach((el) => data.add(SliderItemData.fromJson(el)));
+      }
+    }
+    return data;
   }
 }

@@ -2,8 +2,8 @@ import 'package:flutter_tdt/core/domain/enums/enums.dart';
 import 'package:flutter_tdt/core/models/models.dart';
 import 'package:flutter_tdt/core/domain/utils/utils.dart';
 import 'package:flutter_tdt/core/services/auth_service.dart';
-import 'package:flutter_tdt/core/view_models/base_view.dart';
 import 'package:flutter_tdt/locator.dart';
+import 'package:flutter_tdt/view/view_models/base_view.dart';
 
 class RegisterView extends BaseView {
   UserModel _userWrapper = UserModel();

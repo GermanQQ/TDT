@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_tdt/core/navigation/app_router.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
 import 'package:flutter_tdt/core/services/auth_service.dart';
-import 'package:flutter_tdt/core/view_models/language_view.dart';
+import 'package:flutter_tdt/core/services/language_service.dart';
 import 'package:flutter_tdt/locator.dart';
 import 'package:provider/provider.dart';
 import 'core/domain/constants/constans.dart';
@@ -16,7 +16,7 @@ void main() async {
   await Firebase.initializeApp();
   await EasyLocalization.ensureInitialized();
   setupLocator();
-  runApp(await LanguageView.localize(MyApp()));
+  runApp(await LanguageService.localize(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<Routes>(create: (_) => locator<Routes>()),
-        ChangeNotifierProvider<LanguageView>(create: (_) => locator<LanguageView>()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

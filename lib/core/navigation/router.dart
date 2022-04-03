@@ -1,7 +1,8 @@
 import 'package:flutter_tdt/core/domain/enums/enums.dart';
 import 'package:flutter_tdt/core/services/auth_service.dart';
-import 'package:flutter_tdt/core/view_models/base_view.dart';
+import 'package:flutter_tdt/core/services/language_service.dart';
 import 'package:flutter_tdt/locator.dart';
+import 'package:flutter_tdt/view/view_models/base_view.dart';
 
 class Routes extends BaseView {
   static String initialLang = '/initial_lang';
@@ -20,6 +21,7 @@ class Routes extends BaseView {
   bool _navigateRegister = false;
 
   AuthStatus get status => locator<AuthService>().authStatus;
+  bool get langIsNotNull => LanguageService.lang != null;
 
   bool get navLogin => _navigateLogin;
   bool get navRegister => _navigateRegister;

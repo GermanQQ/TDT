@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/view_models/register_view.dart';
+import 'package:flutter_tdt/view/view_models/register_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/domain/constants/constans.dart';
