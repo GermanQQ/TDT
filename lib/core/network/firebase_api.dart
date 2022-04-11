@@ -16,7 +16,6 @@ class FirebaseAPI {
   UserModel? _user;
 
   UserModel? get user => _user;
-  User? get _userFirebase => _auth.currentUser;
   String get _langCode =>
       LanguageService.lang?.languageCode ??
       LanguageService.defautlLang.languageCode;
@@ -27,8 +26,8 @@ class FirebaseAPI {
   }
 
   Future<void> _isAuthorized() async {
-    if (_userFirebase != null) {
-      _user = await getUser(_userFirebase!.uid);
+    if (_auth.currentUser != null) {
+      _user = await getUser(_auth.currentUser!.uid);
     } else {
       _user = null;
     }
@@ -57,7 +56,6 @@ class FirebaseAPI {
       log('Error signIn:', error: e);
       rethrow;
     }
-    _user = null;
   }
 
   void signOut() {
@@ -72,7 +70,7 @@ class FirebaseAPI {
 
   Future<void> setUser(UserModel user) async {
     //when register user
-    user.uid = _userFirebase?.uid;
+    user.uid = _auth.currentUser?.uid;
     if (user.uid != null) {
       await _store.collection(usersCollection).doc(user.uid).set(user.toMap());
     }
