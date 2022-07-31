@@ -1,35 +1,39 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_tdt/core/view_models/base_model.dart';
+import 'package:flutter_tdt/core/navigation/router.dart';
+import 'package:flutter_tdt/locator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LanguageModel extends BaseModel {
-  static List<Locale> supportedLocales = [
-    const Locale.fromSubtags(languageCode: 'en'),
-    const Locale.fromSubtags(languageCode: 'ru'),
-    const Locale.fromSubtags(languageCode: 'es'),
+class LanguageService {
+  static const defautlLang = Locale.fromSubtags(languageCode: 'en');
+
+  static const List<Locale> supportedLocales = [
+    Locale.fromSubtags(languageCode: 'uk'),
+    defautlLang,
+    Locale.fromSubtags(languageCode: 'ru'),
   ];
 
   static Locale? lang;
 
-  void setLang(Locale locale) async {
+  static void setLang(Locale locale) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString('langCode', locale.languageCode);
     lang = locale;
-    notifyListeners();
+    //when should to update route
+    locator<Routes>().refresh();
   }
 
   static localize(Widget app) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     String? langCode = pref.getString('langCode');
     if (langCode != null) lang = Locale.fromSubtags(languageCode: langCode);
-    
+
     return EasyLocalization(
         supportedLocales: supportedLocales,
         path: 'assets/locale',
         useOnlyLangCode: true,
-        startLocale: lang ?? supportedLocales[0],
-        fallbackLocale: lang ?? supportedLocales[0],
+        startLocale: lang ?? defautlLang,
+        fallbackLocale: lang ?? defautlLang,
         child: app);
   }
 }

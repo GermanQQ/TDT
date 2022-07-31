@@ -10,3 +10,4 @@ export 'message_text_field.dart';
 export 'custom_bottom_bar.dart';
 export 'course_card.dart';
 export 'image_tempalte.dart';
+export 'default_wrapper.dart';

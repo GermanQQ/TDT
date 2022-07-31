@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tdt/core/domain/enums/enums.dart';
 import 'package:flutter_tdt/core/navigation/router.dart';
-import 'package:flutter_tdt/core/view_models/register_model.dart';
+import 'package:flutter_tdt/view/view_models/register_view.dart';
 import 'package:flutter_tdt/view/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
@@ -24,8 +24,8 @@ class _RegisteringPageState extends State<RegisteringPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<RegisterModel>(
-      create: (context) => RegisterModel(),
+    return ChangeNotifierProvider<RegisterView>(
+      create: (context) => RegisterView(),
       child: Scaffold(
         appBar: AppBar(
           title: Text(
@@ -35,7 +35,7 @@ class _RegisteringPageState extends State<RegisteringPage> {
           leadingWidth: 60,
           leading: const CustomBackBtn(),
         ),
-        body: Consumer<RegisterModel>(
+        body: Consumer<RegisterView>(
             builder: (context, model, child) => model.state == ViewState.Idle
                 ? Stack(
                     children: [

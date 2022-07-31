@@ -1,12 +1,11 @@
 import 'package:flutter_tdt/core/domain/enums/enums.dart';
 import 'package:flutter_tdt/core/models/models.dart';
 import 'package:flutter_tdt/core/domain/utils/utils.dart';
-import 'package:flutter_tdt/core/network/auth_service.dart';
-import 'package:flutter_tdt/core/view_models/auth_model.dart';
-import 'package:flutter_tdt/core/view_models/base_model.dart';
+import 'package:flutter_tdt/core/services/auth_service.dart';
 import 'package:flutter_tdt/locator.dart';
+import 'package:flutter_tdt/view/view_models/base_view.dart';
 
-class RegisterModel extends BaseModel {
+class RegisterView extends BaseView {
   UserModel _userWrapper = UserModel();
   RegisterStep _step = RegisterStep.name;
 
@@ -43,9 +42,7 @@ class RegisterModel extends BaseModel {
   Future<void> _startRegisteringUser(String password) async {
     applyState(ViewState.Busy);
     bool registerSucces = await _registerCallBack(_userWrapper, password);
-    if (registerSucces) {
-      locator<AuthModel>().changeStatus(AuthStatus.Authenticated);
-    } else {
+    if (!registerSucces) {
       _registrationFailed();
       applyState(ViewState.Idle);
     }
@@ -62,8 +59,7 @@ class RegisterModel extends BaseModel {
 
   Future<bool> _registerCallBack(UserModel _user, String password) async {
     try {
-      await locator<AuthService>().registerUser(_user, password);
-      return locator<AuthService>().user != null;
+      return await locator<AuthService>().registerUser(_user, password);
     } catch (_) {
       return false;
     }

@@ -4,8 +4,8 @@
         return 'English';
       case 'ru':
         return 'Russia';
-      case 'es':
-        return 'Spanish';
+      case 'uk':
+        return 'Ukraine';
       default:
         return 'None';
     }
