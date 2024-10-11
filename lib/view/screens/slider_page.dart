@@ -53,6 +53,7 @@ class _SliderPageState extends State<SliderPage> {
                     children: [
                       CustomSlider(controller: _buttonCarouselController),
                       const SizedBox(height: 20),
+                      BaseButton(ButtonType.blue).create(title: 'Register', onTap: ()=> provider.onPressRegister()),
                       CustomButton(
                         title: 'Register',
                         onPressed: () => provider.onPressRegister(),
